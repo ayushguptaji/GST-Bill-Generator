@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GST BILL</title>
+    <!-- JQuery-->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Font Awsome -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="gstBill.css" />
+
+    <!-- Custom JS -->
+    <script src="gstBill.js"></script>
+  </head>
+  <body>
+    <div class="container mb-5">
+      <form>
+        <div class="row mt-5">
+          <div class="col-5">
+            <!-- Seller Details -->
+            <div id="your_company">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Your Company"
+              />
+            </div>
+            <div id="your_name">
+              <input type="text" class="form-control" placeholder="Your Name" />
+            </div>
+            <div id="company_address_1">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Company's Address Line 1"
+              />
+            </div>
+            <div id="company_address_2">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Company's Address Line 2"
+              />
+            </div>
+            <div id="company_address_3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="City, State - ZIP"
+              />
+            </div>
+            <div id="company_country">
+              <input type="text" class="form-control" placeholder="Country" />
+            </div>
+
+            
+          </div>
+          <div class="col-2 fs-4 fw-bolder text-center">INVOICE</div>
+
+          <!-- Buyer Details -->
+          <div class="col-5">
+            <div class=""><b>Bill To:</b></div>
+            <div id="your_client_company">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Your Client's Company"
+              />
+            </div>
+            <div id="client_address_1">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Client's Address Line 1"
+              />
+            </div>
+            <div id="client_address_2">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Client's Address Line 2"
+              />
+            </div>
+            <div id="client_address_3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="City, State - ZIP"
+              />
+            </div>
+            <div id="client_country">
+              <input type="text" class="form-control" placeholder="Country" />
+            </div>
+          </div>
+          <!--Invoice details-->
+          <div class="col-12 ms-2 mt-2">
+            <div class="input-group row">
+              <div class="col-2">Invoice#</div>
+              <div class="col-3">
+                <input
+                  type="text"
+                  class="form-control ms-1 pt-0"
+                  placeholder="INV-12"
+                />
+              </div>
+            </div>
+            <div class="input-group row">
+              <div class="col-2">Invoice Date</div>
+              <div class="col-3">
+                <input
+                  type="text"
+                  class="form-control ms-1 pt-0"
+                  placeholder="31 January 2022"
+                />
+              </div>
+            </div>
+            <div class="input-group row">
+              <div class="col-2">Due Date</div>
+              <div class="col-3">
+                <input
+                  type="text"
+                  class="form-control ms-1 pt-0"
+                  placeholder="31 January 2022"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Purchased Items-->
+        <div class="mt-3">
+          <table class="table" id="item_table">
+            <!--Product Table-->
+            <thead class="bg-dark text-white">
+              <tr>
+                <th rowspan="2" class="border-end col-1">Sl. No.</th>
+                <th rowspan="2" class="border-end col-5">Product Name</th>
+                <th rowspan="2" class="border-end col-1 text-center">Qty.</th>
+                <th rowspan="2" class="border-end col-1 text-center">Rate</th>
+                <th rowspan="2" class="border-end col-1 text-center">
+                  Discount
+                </th>
+                <th colspan="2" class="border-end col-2 text-center">Tax</th>
+                <th rowspan="2" class="border-end col-1 text-end">Amount</th>
+              </tr>
+              <tr>
+                <th class="col-1 border-end text-center">CGST</th>
+                <th class="col-1 border-end text-center">IGST</th>
+              </tr>
+            </thead>
+
+            <!--Each product-->
+            <tbody id="items_body">
+              <tr class="items">
+                <!-- Product Serial No.-->
+                <td class="sl_no">1</td>
+
+                <!-- Product Name-->
+                <td>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control product_name"
+                      placeholder="Product Name"
+                    />
+                  </div>
+                </td>
+
+                <!-- Product Quantity -->
+                <!-- onchange function calculate_amount(this) added in fields qty, rate, discount, cgst for calculation of Amount -->
+                <td>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control text-center qty"
+                      onchange="calculate_amount(this)"
+                    />
+                  </div>
+                </td>
+
+                <!-- Product Rate -->
+                <td>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control text-center rate"
+                      onchange="calculate_amount(this)"
+                    />
+                  </div>
+                </td>
+
+                <!-- Product Discount -->
+                <td>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control text-center discount"
+                      onchange="calculate_amount(this)"
+                    />
+                  </div>
+                </td>
+
+                <!-- Product CGST -->
+                <td>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control text-center cgst"
+                      onblur="copy_to_igst(this)"
+                      onchange="calculate_amount(this)"
+                    />
+                  </div>
+                </td>
+
+                <!-- Product CGST -->
+                <td>
+                  <div class="igst text-center"></div>
+                </td>
+
+                <!-- Product Amount -->
+                <td>
+                  <div class="amount text-end"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Add remove button -->
+          <div class="row" id="add_remove_button">
+            <div class="col-6">
+              <a id="add_line_item">+Add Line Item</a>
+            </div>
+            <div class="col-6 text-end">
+              <a id="remove_line_item">-Remove Line Item</a>
+            </div>
+          </div>
+
+          <!-- Button for total amount calculation-->
+          <div class="row my-3" id="cal_total_button">
+            <div class="text-end">
+              <div id="cal_total" class="btn btn-primary">
+                Calculate Total Amount
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Amount and Amount in Words -->
+          <table class="table table-borderless">
+            <tr>
+              <td class="col-8 text-end"></td>
+              <td class="col-2 bg-dark bg-opacity-25 ps-3">Total Amount</td>
+              <td
+                class="col-2 text-end bg-dark bg-opacity-25"
+                id="total_amount"
+              >
+                ₹ 0
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Notes and Terms & Condition Section-->
+        <div class="mt-5">
+          <div class="navbar-brand">Notes</div>
+          <p>It was great doing business with you.</p>
+          <div class="navbar-brand">Terms & Conditions</div>
+          <p>Please make the payment by the due date.</p>
+        </div>
+      </form>
+
+      <!-- Generate Bill Button -->
+      <div class="text-center">
+        <div class="col-4 btn btn-primary fs-4" id="generate_bill">
+          Generate Bill
+        </div>
+      </div>
+
+      <!-- Modify Bill & Print Bill Button -->
+      <div
+        class="row justify-content-evenly"
+        id="modify_print_button"
+        style="display: none"
+      >
+        <div class="col-4 btn btn-primary fs-4" id="modify_bill">
+          Modify Bill
+        </div>
+
+        <div class="col-4 btn btn-primary fs-4" id="print_bill">Print Bill</div>
+      </div>
+    </div>
+  </body>
+</html>
